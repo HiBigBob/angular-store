@@ -5,22 +5,13 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-  </head>
-  <body ng-app="angularStoreApp">
-    <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="header">
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+  <body ng-app="angularStoreApp" unsolved>
+
+<!--     <div class="header">
       <div class="navbar navbar-default" role="navigation">
         <div class="container">
           <div class="navbar-header">
@@ -29,7 +20,6 @@
           </div>
 
           <div class="collapse">
-
             <ul class="nav navbar-nav">
               <li class="active"><a href="#/">Home</a></li>
               <li><a ng-href="#/about">About</a></li>
@@ -38,41 +28,95 @@
           </div>
         </div>
       </div>
-    </div>
-
+    </div> -->
+<!-- 
     <div class="container">
-    <div ng-view=""></div>
-    </div>
+      <div ng-view=""></div>
+    </div> -->
 
-    <div class="footer">
-      <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
+<!--     <div ng-controller="AppCtrl"  layout="column">
+  <section layout="row" flex>
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Sidenav Left</h1>
+      </md-toolbar>
+      <md-content class="md-padding" ng-controller="LeftCtrl">
+        <md-button ng-click="close()" class="md-primary" hide-gt-md>
+          Close Sidenav Left
+        </md-button>
+        <p hide-md show-gt-md>
+          This sidenav is locked open on your device. To go back to the default behavior,
+          narrow your display.
+        </p>
+      </md-content>
+    </md-sidenav>
+    <md-content flex class="md-padding">
+      <div layout="column" layout-fill layout-align="center center">
+        <p>
+        The left sidenav will 'lock open' on a medium (>=960px wide) device.
+        </p>
+        <div>
+          <md-button ng-click="toggleLeft()"
+            class="md-primary" hide-gt-md>
+            Toggle left
+          </md-button>
+        </div>
+        <div>
+          <md-button ng-click="toggleRight()"
+            class="md-primary">
+            Toggle right
+          </md-button>
+        </div>
       </div>
-    </div>
+    </md-content>
+    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+      <md-toolbar class="md-theme-light">
+        <h1 class="md-toolbar-tools">Sidenav Right</h1>
+      </md-toolbar>
+      <md-content ng-controller="RightCtrl" class="md-padding">
+        <md-button ng-click="close()" class="md-primary">
+          Close Sidenav Right
+        </md-button>
+      </md-content>
+    </md-sidenav>
+  </section>
+</div> -->
 
+<div ng-controller="AppCtrl as appCtrl">
+  <md-content class="md-padding">
+    <md-grid-list
+        md-cols-gt-md="12" md-cols-sm="3" md-cols-md="8"
+        md-row-height-gt-md="1:1" md-row-height="4:3"
+        md-gutter-gt-md="16px" md-gutter-gt-sm="8px" md-gutter="4px">
+      <md-grid-tile
+          ng-repeat="tile in appCtrl.colorTiles"
+          ng-style="{
+            'background': tile.color
+          }"
+          
+          >
+      </md-grid-tile>
+    </md-grid-list>
+  </md-content>
+</div>
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-     <script>
-       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
-       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
-       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
-       }(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    <script src="bower_components/angular/angular.js"></script>
 
-       ga('create', 'UA-XXXXX-X');
-       ga('send', 'pageview');
-    </script>
-
-    <!-- build:js(.) scripts/vendor.js -->
-    <!-- bower:js -->
-    <!-- endbower -->
-    <!-- endbuild -->
-
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <script src="scripts/controllers/store.js"></script>
-        <script src="scripts/directives/producttitle.js"></script>
-        <!-- endbuild -->
+<!--     // <script src="bower_components/angular-animate/angular-animate.js"></script>
+    // <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    // <script src="bower_components/angular-resource/angular-resource.js"></script>
+    // <script src="bower_components/angular-route/angular-route.js"></script>
+    // <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    // <script src="bower_components/angular-touch/angular-touch.js"></script>
+ -->
+    <script src="bower_components/angular-material/angular-material.js"></script>
+    <script src="bower_components/angular-aria/angular-aria.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/store.js"></script>
+    <script src="scripts/directives/producttitle.js"></script>
 </body>
 </html>
