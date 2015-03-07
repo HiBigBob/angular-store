@@ -60,12 +60,12 @@
             
             Open my cart
           </md-button>
-          <p ng-show="todo">
-            <img ng-src="http://images.amazon.com/images/P/{{todo.isbn}}" class="face" style="width:90px;" alt="{{todo.title}}">
+          <div ng-show="todo">
+            <img ng-src="http://images.amazon.com/images/P/{{todo.isbn}}" class="face" alt="{{todo.title}}">
             <h4>
               {{todo.title}}
             </h4>
-          </p>
+          </div>
         </div>
       </div>
     </md-content>
