@@ -47,7 +47,7 @@
         <md-button class="md-fab md-primary md-hue-2" aria-label="Profile">
             <md-icon md-svg-src="img/icons/ic_people_24px.svg"></md-icon>
         </md-button>
-      <div layout="column" layout-fill layout-align="center center">
+      <div layout="column" layout-fill layout-align="left">
         <div>
           <md-button ng-click="toggleLeft()"
             class="md-primary" hide-gt-md>
@@ -61,10 +61,14 @@
             Open my cart
           </md-button>
           <div ng-show="todo">
-            <img ng-src="http://images.amazon.com/images/P/{{todo.isbn}}" class="face" alt="{{todo.title}}">
-            <h4>
+            <div style="margin-left:0px;width:40%;float:left;">
+              <img ng-src="http://images.amazon.com/images/P/{{todo.isbn}}" class="face" alt="{{todo.title}}">  
+            </div>
+            <div  style="float:left;">
+              <h4>
               {{todo.title}}
-            </h4>
+              </h4>  
+            </div>
           </div>
         </div>
       </div>
