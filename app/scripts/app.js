@@ -32,48 +32,68 @@ angular.module('angularStoreApp', ['ngMaterial'])
   };
 
   $scope.todo = null;
-  $scope.cart = null;
+  $scope.cart = [];
 
   $scope.showing = function(todo) {
     $scope.todo = todo;
   };
 
   $scope.addCart = function(todo) {
-    $scope.cart.push(todo);
+      var vars = $scope.cart.indexOf(todo);
+      if (vars >= 0) {
+        todo = $scope.cart[vars];
+        if (todo.quantite >= 1) {
+          todo.quantite = todo.quantite + 1;
+        } else {
+          todo.quantite = 1;  
+        }
+        $scope.cart.splice(vars, 1);
+      }
+      console.log(todo);
+
+      $scope.cart.push(todo);
   };
 
   $scope.todos = [
       {
         isbn : '2800156554',
-        title: 'Orbital - Tome 6'
+        title: 'Orbital - Tome 6',
+        price: 11.50
       },
       {
         isbn : '2365770258',
-        title: 'Fables - Tome 1'
+        title: 'Fables - Tome 1',
+        price: 14.50
       },
       {
         isbn : '2365772013',
-        title: 'Saga - Tome 1'
+        title: 'Saga - Tome 1',
+        price: 15
       },
       {
         isbn : '2809446245',
-        title: 'Deadpool : Les noces de Dracula'
+        title: 'Deadpool : Les noces de Dracula',
+        price: 12.99
       },
       {
         isbn : '2800156554',
-        title: 'Orbital - Tome 6'
+        title: 'Orbital - Tome 6',
+        price: 11.50
       },
       {
         isbn : '2365770258',
-        title: 'Fables - Tome 1'
+        title: 'Fables - Tome 1',
+        price: 14.50
       },
       {
         isbn : '2365772013',
-        title: 'Saga - Tome 1'
+        title: 'Saga - Tome 1',
+        price: 15
       },
       {
         isbn : '2809446245',
-        title: 'Deadpool : Les noces de Dracula'
+        title: 'Deadpool : Les noces de Dracula',
+        price: 12.99
       },
     ];
 });

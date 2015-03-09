@@ -34,7 +34,8 @@
               <div class="md-tile-content" style="margin-left:35px;float:right;">
                 <h3>{{item.title}}</h3>
                 <p>
-                  12
+                <h5>
+                  {{item.price}} 
                 </p>
               </div>
             </md-item-content>
@@ -58,14 +59,17 @@
             Open my cart
           </md-button>
           <div ng-show="todo" style="margin-top:50px;">
-            <div style="margin-left:0px;width:40%;float:left;">
+            <div style="margin-left:0px;width:50%;float:left;">
               <img ng-src="http://images.amazon.com/images/P/{{todo.isbn}}" class="face" alt="{{todo.title}}">  
             </div>
             <div style="float:left;">
               <h4>
               {{todo.title}}
               </h4>  
-              <md-button ng-click="addCart()"
+              <h5>
+                {{todo.price}}
+              </h5>  
+              <md-button ng-click="addCart(todo)"
                 class="md-primary" ng-show="todo != ''">
                 Add cart
               </md-button>
@@ -74,11 +78,27 @@
         </div>
       </div>
     </md-content>
-    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-is-locked-open="$mdMedia('gt-md')">
       <md-toolbar class="md-theme-light">
         <h1 class="md-toolbar-tools">Cart</h1>
       </md-toolbar>
       <md-content class="md-padding">
+          <md-item ng-repeat="item in cart">
+            <md-item-content>
+              <div class="md-tile-left">
+                  <img ng-src="http://images.amazon.com/images/P/{{item.isbn}}" class="face" style="width:30px;" alt="{{item.title}}">
+              </div>
+              <div class="md-tile-content" style="margin-left:35px;float:right;">
+                <h3>{{item.title}}</h3>
+                <p>
+                  {{item.quantite}}
+                </p>
+                <p>
+                  {{item.quantite * item.price}}
+                </p>
+              </div>
+            </md-item-content>
+          </md-item>
         <md-button ng-click="close()" class="md-primary">
         </md-button>
       </md-content>
@@ -95,6 +115,6 @@
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/about.js"></script>
     <script src="scripts/controllers/store.js"></script>
-    <script src="scripts/directives/producttitle.js"></script>
+    <script src="scripts/directivestitle.js"></script>
 </body>
 </html>
