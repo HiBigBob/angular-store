@@ -31,10 +31,15 @@ angular.module('angularStoreApp', ['ngMaterial'])
                       });
   };
 
-  $scope.todo = {};
+  $scope.todo = null;
+  $scope.cart = null;
 
   $scope.showing = function(todo) {
     $scope.todo = todo;
+  };
+
+  $scope.addCart = function(todo) {
+    $scope.cart.push(todo);
   };
 
   $scope.todos = [
