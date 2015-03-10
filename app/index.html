@@ -5,116 +5,108 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-
     <link rel="stylesheet" href="bower_components/angular-material/angular-material.css">
     <link rel="stylesheet" href="styles/main.css">
   </head>
   <body ng-app="angularStoreApp" unsolved>
-
-
-<div ng-controller="AppCtrl" layout="column">
-  <section layout="row" flex>
-    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" style="height:900px">
-      <md-toolbar md-scroll-shrink>
-        <div class="md-toolbar-tools">
-          <md-input-container>
-            <label>Search</label>
-            <input ng-model="searchText">
-          </md-input-container>
-        </div>
-      </md-toolbar>
-      <md-content class="md-padding" >
-        <md-list>
-          <md-item ng-repeat="item in todos | filter:searchText">
-            <a href="#" ng-click="showing(item)">
-            <md-item-content>
-              <div class="md-tile-left">
-                  <img ng-src="http://images.amazon.com/images/P/{{item.isbn}}" class="face" style="width:90px;" alt="{{item.title}}">
-              </div>
-              <div class="md-tile-content" style="margin-left:35px;float:right;">
-                <h3>{{item.title}}</h3>
-                <p>
-                <h5>
-                  {{item.price}} 
-                </p>
-              </div>
-            </md-item-content>
-            <md-divider ng-if="!$last"></md-divider>
-           </a>
-          </md-item>
-        </md-list>
-      </md-content>
-    </md-sidenav>
-    <md-content flex class="md-padding" >
-      <div layout="column" layout-fill layout-align="left">
-        <div>
-          <md-button ng-click="toggleLeft()"
-            class="md-primary" hide-gt-md>
-            Toggle left
-          </md-button>
-        </div>
-        <div>
-          <md-button ng-click="toggleRight()"
-            class="md-primary" style="float:right;">
-            Open my cart
-          </md-button>
-          <div ng-show="todo" style="margin-top:50px;">
-            <div style="margin-left:0px;width:50%;float:left;">
-              <img ng-src="http://images.amazon.com/images/P/{{todo.isbn}}" class="face" alt="{{todo.title}}">  
+    <div ng-controller="AppCtrl" layout="column">
+      <section layout="row" flex>
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" style="height:900px">
+          <md-toolbar md-scroll-shrink>
+            <div class="md-toolbar-tools">
+              <md-input-container>
+                <label>Search</label>
+                <input ng-model="searchText">
+              </md-input-container>
             </div>
-            <div style="float:left;">
-              <h4>
-              {{todo.title}}
-              </h4>  
-              <h5>
-                {{todo.price}}
-              </h5>  
-              <md-button ng-click="addCart(todo)"
-                class="md-primary" ng-show="todo != ''">
-                Buy
+          </md-toolbar>
+          <md-content class="md-padding" >
+            <md-list>
+              <md-item ng-repeat="item in todos | filter:searchText">
+                <a href="#" ng-click="showing(item)">
+                <md-item-content>
+                  <div class="md-tile-left">
+                      <img ng-src="http://images.amazon.com/images/P/{{item.isbn}}" class="face" style="width:90px;" alt="{{item.title}}">
+                  </div>
+                  <div class="md-tile-content" style="margin-left:35px;float:right;">
+                    <h3>{{item.title}}</h3>
+                    <p>
+                    <h5>
+                      {{item.price}} 
+                    </p>
+                  </div>
+                </md-item-content>
+                <md-divider ng-if="!$last"></md-divider>
+               </a>
+              </md-item>
+            </md-list>
+          </md-content>
+        </md-sidenav>
+        <md-content flex class="md-padding" >
+          <div layout="column" layout-fill layout-align="left">
+            <div>
+              <md-button ng-click="toggleLeft()"
+                class="md-primary" hide-gt-md>
+                Toggle left
               </md-button>
             </div>
+            <div>
+              <md-button ng-click="toggleRight()"
+                class="md-primary" style="float:right;">
+                Open my cart
+              </md-button>
+              <div ng-show="todo" style="margin-top:50px;">
+                <div style="margin-left:0px;width:50%;float:left;">
+                  <img ng-src="http://images.amazon.com/images/P/{{todo.isbn}}" class="face" alt="{{todo.title}}">  
+                </div>
+                <div style="float:left;">
+                  <h4>
+                  {{todo.title}}
+                  </h4>  
+                  <h5>
+                    {{todo.price}}
+                  </h5>  
+                  <md-button ng-click="addCart(todo)"
+                    class="md-primary" ng-show="todo != ''">
+                    Buy
+                  </md-button>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </md-content>
-    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-is-locked-open="$mdMedia('gt-md')">
-      <md-toolbar class="md-theme-light">
-        <h1 class="md-toolbar-tools">Cart</h1>
-      </md-toolbar>
-      <md-content class="md-padding">
-          <md-item ng-repeat="item in cart">
-            <md-item-content>
-              <div class="md-tile-left">
-                  <img ng-src="http://images.amazon.com/images/P/{{item.isbn}}" class="face" style="width:30px;" alt="{{item.title}}">
-              </div>
-              <div class="md-tile-content" style="margin-left:35px;float:right;">
-                <h3>{{item.title}}</h3>
-                <p>
-                  {{item.quantite}}
-                </p>
-                <p>
-                  {{item.quantite * item.price}}
-                </p>
-              </div>
-            </md-item-content>
-          </md-item>
-        <md-button ng-click="close()" class="md-primary">
-        </md-button>
-      </md-content>
-    </md-sidenav>
-  </section>
-</div>
+        </md-content>
+        <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-is-locked-open="$mdMedia('gt-md')">
+          <md-toolbar class="md-theme-light">
+            <h1 class="md-toolbar-tools">Cart</h1>
+          </md-toolbar>
+          <md-content class="md-padding">
+              <md-item ng-repeat="item in cart">
+                <md-item-content>
+                  <div class="md-tile-left">
+                      <img ng-src="http://images.amazon.com/images/P/{{item.isbn}}" class="face" style="width:30px;" alt="{{item.title}}">
+                  </div>
+                  <div class="md-tile-content" style="margin-left:35px;float:right;">
+                    <h3>{{item.title}}</h3>
+                    <p>
+                      {{item.quantite}}
+                    </p>
+                    <p>
+                      {{item.quantite * item.price}}
+                    </p>
+                  </div>
+                </md-item-content>
+              </md-item>
+            <md-button ng-click="close()" class="md-primary">
+            </md-button>
+          </md-content>
+        </md-sidenav>
+      </section>
+    </div>
 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
-    
     <script src="scripts/app.js"></script>
-    <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/about.js"></script>
-    <script src="scripts/controllers/store.js"></script>
-    <script src="scripts/directivestitle.js"></script>
 </body>
 </html>
