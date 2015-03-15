@@ -48,6 +48,8 @@ angular.module('angularStoreApp', ['ngMaterial'])
           todo.quantite = 1;  
         }
         $scope.cart.splice(vars, 1);
+      } else {
+        todo.quantite = 1;
       }
       console.log(todo);
 
