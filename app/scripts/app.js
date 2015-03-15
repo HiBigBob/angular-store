@@ -33,6 +33,7 @@ angular.module('angularStoreApp', ['ngMaterial'])
 
   $scope.todo = null;
   $scope.cart = [];
+  $scope.total = 0;
 
   $scope.showing = function(todo) {
     $scope.todo = todo;
@@ -42,11 +43,7 @@ angular.module('angularStoreApp', ['ngMaterial'])
       var vars = $scope.cart.indexOf(todo);
       if (vars >= 0) {
         todo = $scope.cart[vars];
-        if (todo.quantite >= 1) {
-          todo.quantite = todo.quantite + 1;
-        } else {
-          todo.quantite = 1;  
-        }
+        todo.quantite = todo.quantite + 1;
         $scope.cart.splice(vars, 1);
       } else {
         todo.quantite = 1;
@@ -54,48 +51,61 @@ angular.module('angularStoreApp', ['ngMaterial'])
       console.log(todo);
 
       $scope.cart.push(todo);
+      
+      $scope.total = 0;
+      angular.forEach($scope.cart, function(product) {
+          $scope.total += product.price * product.quantite;
+      });
   };
 
   $scope.todos = [
       {
+        id: 1,
         isbn : '2800156554',
-        title: 'Orbital - Tome 6',
+        title: 'Orbital',
         price: 11.50
       },
       {
+        id: 2,
         isbn : '2365770258',
-        title: 'Fables - Tome 1',
+        title: 'Fables',
         price: 14.50
       },
       {
+        id: 3,
         isbn : '2365772013',
-        title: 'Saga - Tome 1',
+        title: 'Saga',
         price: 15
       },
       {
+        id: 4,
         isbn : '2809446245',
         title: 'Deadpool : Les noces de Dracula',
-        price: 12.99
+        price: 12.50
       },
       {
-        isbn : '2800156554',
-        title: 'Orbital - Tome 6',
-        price: 11.50
+        id: 5,
+        isbn : '236577430X',
+        title: 'Y the last man',
+        price: 28
       },
       {
-        isbn : '2365770258',
-        title: 'Fables - Tome 1',
-        price: 14.50
+        id: 6,
+        isbn : '2365776167',
+        title: 'Batman',
+        price: 19
       },
       {
-        isbn : '2365772013',
-        title: 'Saga - Tome 1',
-        price: 15
+        id: 7,
+        isbn : '2800108681',
+        title: 'Les tuniques bleus',
+        price: 11
       },
       {
-        isbn : '2809446245',
-        title: 'Deadpool : Les noces de Dracula',
-        price: 12.99
+        id: 8,
+        isbn : '2365775098',
+        title: 'Infinite crisis',
+        price: 28
       },
     ];
 });

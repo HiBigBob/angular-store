@@ -23,7 +23,7 @@
           <md-content class="md-padding" >
             <md-list>
               <md-item ng-repeat="item in todos | filter:searchText">
-                <a href="#" ng-click="showing(item)">
+                <a href="#" ng-click="showing(item)" style="text-decoration:none;color:black;">
                 <md-item-content>
                   <div class="md-tile-left">
                       <img ng-src="http://images.amazon.com/images/P/{{item.isbn}}" class="face" style="width:90px;" alt="{{item.title}}">
@@ -32,7 +32,7 @@
                     <h3>{{item.title}}</h3>
                     <p>
                     <h5>
-                      {{item.price}} 
+                      ${{item.price}} 
                     </p>
                   </div>
                 </md-item-content>
@@ -45,16 +45,6 @@
         <md-content flex class="md-padding" >
           <div layout="column" layout-fill layout-align="left">
             <div>
-              <md-button ng-click="toggleLeft()"
-                class="md-primary" hide-gt-md>
-                Toggle left
-              </md-button>
-            </div>
-            <div>
-              <md-button ng-click="toggleRight()"
-                class="md-primary" style="float:right;">
-                Open my cart
-              </md-button>
               <div ng-show="todo" style="margin-top:50px;">
                 <div style="margin-left:0px;width:50%;float:left;">
                   <img ng-src="http://images.amazon.com/images/P/{{todo.isbn}}" class="face" alt="{{todo.title}}">  
@@ -64,7 +54,7 @@
                   {{todo.title}}
                   </h4>  
                   <h5>
-                    {{todo.price}}
+                    ${{todo.price}}
                   </h5>  
                   <md-button ng-click="addCart(todo)"
                     class="md-primary" ng-show="todo != ''">
@@ -83,19 +73,22 @@
               <md-item ng-repeat="item in cart">
                 <md-item-content>
                   <div class="md-tile-left">
-                      <img ng-src="http://images.amazon.com/images/P/{{item.isbn}}" class="face" style="width:30px;" alt="{{item.title}}">
+                      <img ng-src="http://images.amazon.com/images/P/{{item.isbn}}" class="face" style="width:60px;" alt="{{item.title}}">
                   </div>
                   <div class="md-tile-content" style="margin-left:35px;float:right;">
                     <h3>{{item.title}}</h3>
                     <p>
-                      {{item.quantite}}
+                      Quantity {{item.quantite}}
                     </p>
                     <p>
-                      {{item.quantite * item.price}}
+                      Price ${{item.quantite * item.price}}
                     </p>
                   </div>
                 </md-item-content>
               </md-item>
+              <div ng-show="cart != ''">
+                Total ${{ total }}  
+              </div>
             <md-button ng-click="close()" class="md-primary">
             </md-button>
           </md-content>
